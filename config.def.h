@@ -1,20 +1,20 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 5;        /* gaps between windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const int showbar            = 1;        /* 0 means no bar */
+static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {"JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true", "MesloLGS NF:pixelsize=11:antialias=true:autohint=true"};
 static const char dmenufont[]       = "JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true";
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
+static char normbgcolor[]           = "#000000";
+static char normbordercolor[]       = "#345a66";
+static char normfgcolor[]           = "#FFFFFF";
+static char selfgcolor[]            = "#00141A";
+static char selbordercolor[]        = "#345a66";
+static char selbgcolor[]            = "#FFC102";
 static char *colors[][3] = {
   /*               fg           bg           border   */ 
   [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },

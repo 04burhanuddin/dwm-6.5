@@ -7,8 +7,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = {"JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true", "MesloLGS NF:pixelsize=11:antialias=true:autohint=true"};
+static const char dmenufont[]       = "JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -29,16 +29,29 @@ static char *colors[][3] = {
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
+/* brightnessctl */
+static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
+static const char *dimmer[]   = { "brightnessctl", "set", "5%-", NULL };
+
+/* volume */
+static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
+static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
+static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+  { "TelegramDesktop",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+  { "obs",                NULL,     NULL,           0,         1,          0,           0,        -1 },
+  { "discord",            NULL,     NULL,           0,         1,          0,           0,        -1 },
+  { "vlc",                NULL,     NULL,           0,         1,          0,           0,        -1 },
+  { "Firefox",            NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+  { "St",                 NULL,     NULL,           0,         0,          1,           0,        -1 },
+  { NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+
 };
 
 /* layout(s) */
@@ -119,6 +132,11 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+  { 0, XF86XK_MonBrightnessDown,  spawn, {.v = dimmer } },
+  { 0, XF86XK_MonBrightnessUp,    spawn, {.v = brighter } },
+  { 0, XF86XK_AudioMute,          spawn, {.v = mute_vol } },
+  { 0, XF86XK_AudioLowerVolume,   spawn, {.v = down_vol } },
+  { 0, XF86XK_AudioRaiseVolume,   spawn, {.v = up_vol } },
 };
 
 /* button definitions */

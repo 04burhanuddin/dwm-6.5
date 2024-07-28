@@ -1,20 +1,31 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 0;        /* gaps between windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = 4;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {"JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true", "MesloLGS NF:pixelsize=11:antialias=true:autohint=true"};
 static const char dmenufont[]       = "JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true";
-static char normbgcolor[]           = "#000000";
-static char normbordercolor[]       = "#345a66";
-static char normfgcolor[]           = "#FFFFFF";
-static char selfgcolor[]            = "#00141A";
-static char selbordercolor[]        = "#345a66";
-static char selbgcolor[]            = "#FFC102";
+
+// everforest dark
+/*static char normbgcolor[]         = "#2B3339";*/
+/*static char normbordercolor[]     = "#3D484D";*/
+/*static char normfgcolor[]         = "#F3BCB7";*/
+/*static char selfgcolor[]          = "#FFFBEF";*/
+/*static char selbordercolor[]      = "#56635F";*/
+/*static char selbgcolor[]          = "#E67E80";*/
+
+// solarized osaka
+static char normbgcolor[]         = "#000000";
+static char normbordercolor[]     = "#345a66";
+static char normfgcolor[]         = "#F9AAD0";
+static char selfgcolor[]          = "#FFFFFF";
+static char selbordercolor[]      = "#345a66";
+static char selbgcolor[]          = "#F255A1";
+
 static char *colors[][3] = {
   /*               fg           bg           border   */ 
   [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },

@@ -10,21 +10,29 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {"JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true", "MesloLGS NF:pixelsize=11:antialias=true:autohint=true"};
 static const char dmenufont[]       = "JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true";
 
-// everforest dark
-/*static char normbgcolor[]         = "#2B3339";*/
-/*static char normbordercolor[]     = "#3D484D";*/
-/*static char normfgcolor[]         = "#F3BCB7";*/
-/*static char selfgcolor[]          = "#FFFBEF";*/
-/*static char selbordercolor[]      = "#56635F";*/
-/*static char selbgcolor[]          = "#E67E80";*/
+// default color
+/*static char normbgcolor[]         = "#222222";*/
+/*static char normbordercolor[]     = "#444444";*/
+/*static char normfgcolor[]         = "#bbbbbb";*/
+/*static char selfgcolor[]          = "#eeeeee";*/
+/*static char selbordercolor[]      = "#005577";*/
+/*static char selbgcolor[]          = "#005577";*/
 
 // solarized osaka
-static char normbgcolor[]         = "#000000";
-static char normbordercolor[]     = "#345a66";
-static char normfgcolor[]         = "#F9AAD0";
-static char selfgcolor[]          = "#FFFFFF";
-static char selbordercolor[]      = "#345a66";
-static char selbgcolor[]          = "#F255A1";
+/*static char normbgcolor[]         = "#000000";
+static char normbordercolor[]       = "#345a66";
+static char normfgcolor[]           = "#F9AAD0";
+static char selfgcolor[]            = "#FFFFFF";
+static char selbordercolor[]        = "#345a66";
+static char selbgcolor[]            = "#F255A1";*/
+
+// everforest dark
+static char normbgcolor[]          = "#222222";
+static char normbordercolor[]      = "#475258";
+static char normfgcolor[]          = "#BDDABB";
+static char selfgcolor[]           = "#000000";
+static char selbordercolor[]       = "#7A8478";
+static char selbgcolor[]           = "#A7C080";
 
 static char *colors[][3] = {
   /*               fg           bg           border   */ 

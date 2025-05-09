@@ -1,54 +1,46 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 4;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const int showbar            = 0;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const unsigned int borderpx  = 1;  /* border pixel of windows */
+static const unsigned int gappx     = 4;  /* gaps between windows */
+static const unsigned int snap      = 32; /* snap pixel */
+static const int swallowfloating    = 0;  /* 1 means swallow floating windows by default */
+static const int showbar            = 1;  /* 0 means no bar */
+static const int topbar             = 1;  /* 0 means bottom bar */
 static const char *fonts[]          = {"JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true", "MesloLGS NF:pixelsize=11:antialias=true:autohint=true"};
 static const char dmenufont[]       = "JetbrainsMono Nerd Font:size=11:antialias=true:autohint=true";
 
-// default color
-/*static char normbgcolor[]         = "#222222";*/
-/*static char normbordercolor[]     = "#444444";*/
-/*static char normfgcolor[]         = "#bbbbbb";*/
-/*static char selfgcolor[]          = "#eeeeee";*/
-/*static char selbordercolor[]      = "#005577";*/
-/*static char selbgcolor[]          = "#005577";*/
+/* Default color */
+/*static char normbgcolor[]     = "#222222";
+static char normbordercolor[]   = "#444444";
+static char normfgcolor[]       = "#bbbbbb";
+static char selfgcolor[]        = "#eeeeee";
+static char selbordercolor[]    = "#005577";
+static char selbgcolor[]        = "#005577";*/
 
-// solarized osaka
-/*static char normbgcolor[]         = "#000000";
-static char normbordercolor[]       = "#345a66";
-static char normfgcolor[]           = "#F9AAD0";
-static char selfgcolor[]            = "#FFFFFF";
-static char selbordercolor[]        = "#345a66";
-static char selbgcolor[]            = "#F255A1";*/
-
-// everforest dark
-static char normbgcolor[]          = "#222222";
-static char normbordercolor[]      = "#475258";
-static char normfgcolor[]          = "#BDDABB";
-static char selfgcolor[]           = "#000000";
-static char selbordercolor[]       = "#7A8478";
-static char selbgcolor[]           = "#A7C080";
+/* Everforest dark */
+static char normbgcolor[]       = "#222222";
+static char normbordercolor[]   = "#475258";
+static char normfgcolor[]       = "#BDDABB";
+static char selfgcolor[]        = "#000000";
+static char selbordercolor[]    = "#7A8478";
+static char selbgcolor[]        = "#A7C080";
 
 static char *colors[][3] = {
-  /*               fg           bg           border   */ 
-  [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-  [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
-  [SchemeStatus]    = { normfgcolor, normbgcolor, "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-  [SchemeTagsSel]   = { selfgcolor, selbgcolor, "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-  [SchemeTagsNorm]  = { normfgcolor, normbgcolor, "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-  [SchemeInfoSel]   = { normfgcolor, normbgcolor, "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-  [SchemeInfoNorm]  = { normfgcolor, normbgcolor, "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+  /*                  fg              bg            border   */ 
+  [SchemeNorm]      = { normfgcolor,  normbgcolor,  normbordercolor },
+  [SchemeSel]       = { selfgcolor,   selbgcolor,   selbordercolor },
+  [SchemeStatus]    = { normfgcolor,  normbgcolor,  "#000000" }, // Statusbar right {text,background,not used but cannot be empty}
+  [SchemeTagsSel]   = { selfgcolor,   selbgcolor,   "#000000" }, // Tagbar left selected {text,background,not used but cannot be empty}
+  [SchemeTagsNorm]  = { normfgcolor,  normbgcolor,  "#000000" }, // Tagbar left unselected {text,background,not used but cannot be empty}
+  [SchemeInfoSel]   = { selfgcolor,   selbgcolor,   "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
+  [SchemeInfoNorm]  = { normfgcolor,  selbgcolor,   "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
-/* brightnessctl */
+/* brightness */
 static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
 static const char *dimmer[]   = { "brightnessctl", "set", "5%-", NULL };
 
@@ -62,21 +54,22 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-  { "TelegramDesktop",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-  { "obs",                NULL,     NULL,           0,         1,          0,           0,        -1 },
-  { "discord",            NULL,     NULL,           0,         1,          0,           0,        -1 },
-  { "vlc",                NULL,     NULL,           0,         1,          0,           0,        -1 },
-  { "Firefox",            NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-  { "St",                 NULL,     NULL,           0,         0,          1,           0,        -1 },
-  { NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class            instance  title           tags mask   isfloating  isterminal  noswallow   monitor */
+  { "obs",            NULL,     NULL,           0,          1,          0,          0,          -1 },
+  { "code",           NULL,     NULL,           0,          1,          0,          0,          -1 },
+  { "vlc",            NULL,     NULL,           0,          1,          0,          0,          -1 },
+  { "st",             NULL,     NULL,           0,          1,          1,          0,          -1 },
+  { "Google-chrome",  NULL,     NULL,           0,          1,          0,          0,          -1 },
+  { "pavucontrol",    NULL,     NULL,           0,          1,          0,          0,          -1 },
+  { "Lxappearance",   NULL,     NULL,           0,          1,          0,          0,          -1 },
+  { NULL,             NULL,     "Event Tester", 0,          0,          0,          1,          -1 }, /* xev */
 
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const float mfact        = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster        = 1;    /* number of clients in master area */
+static const int resizehints    = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -109,7 +102,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

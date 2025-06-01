@@ -204,6 +204,8 @@ struct Monitor
   unsigned int sellt;
   unsigned int tagset[2];
   int showbar;
+  int showlayout;
+  int showfloating;
   int topbar;
   Client *clients;
   Client *sel;
@@ -299,6 +301,8 @@ static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
+static void togglebarlyt(const Arg *arg);
+static void togglebarfloat(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
@@ -613,7 +617,7 @@ void buttonpress(XEvent *e)
       click = ClkTagBar;
       arg.ui = 1 << i;
     }
-    else if (ev->x < x + TEXTW(selmon->ltsymbol))
+    else if (ev->x < x + TEXTW(selmon->ltsymbol) && selmon-> showlayout)
       click = ClkLtSymbol;
     else if (ev->x > selmon->ww - (int)TEXTW(stext))
       click = ClkStatusText;
@@ -821,6 +825,8 @@ createmon(void)
   m->mfact = mfact;
   m->nmaster = nmaster;
   m->showbar = showbar;
+  m->showlayout = showlayout;
+  m->showfloating = showfloating;
   m->topbar = topbar;
   m->gappx = gappx;
   m->lt[0] = &layouts[0];
@@ -1083,11 +1089,17 @@ void drawbar(Monitor *m)
     w = TEXTW(tags[i]);
     drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
     drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+    if (occ & 1 << i && selmon->showfloating)
+    drw_rect(drw, x + boxs, boxs, boxw, boxw,
+      m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
+      urg & 1 << i);
     x += w;
   }
-  w = TEXTW(m->ltsymbol);
-  drw_setscheme(drw, scheme[SchemeTagsNorm]);
-  x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+  if (selmon->showlayout) {
+    w = TEXTW(m->ltsymbol);
+    drw_setscheme(drw, scheme[SchemeTagsNorm]);
+    x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+	}
 
   if ((w = m->ww - tw - x) > bh)
   {
@@ -1095,7 +1107,7 @@ void drawbar(Monitor *m)
     {
       drw_setscheme(drw, scheme[m == selmon ? SchemeInfoSel : SchemeInfoNorm]);
       drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
-      if (m->sel->isfloating)
+      if (m->sel->isfloating && selmon->showfloating)
         drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
     }
     else
@@ -2113,6 +2125,18 @@ void togglebar(const Arg *arg)
   selmon->showbar = selmon->pertag->showbars[selmon->pertag->curtag] = !selmon->showbar;
   updatebarpos(selmon);
   XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
+  arrange(selmon);
+}
+
+void togglebarlyt(const Arg *arg)
+{
+  selmon->showlayout = !selmon->showlayout;
+  arrange(selmon);
+}
+
+void togglebarfloat(const Arg *arg)
+{
+  selmon->showfloating = !selmon->showfloating;
   arrange(selmon);
 }
 

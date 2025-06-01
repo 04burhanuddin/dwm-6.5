@@ -34,14 +34,14 @@ static char *colors[][3] = {
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
-/* brightness */
-static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
-static const char *dimmer[]   = { "brightnessctl", "set", "5%-", NULL };
+/* brightness + dwmblocks */
+static const char *brighter[] = { "sh", "-c", "brightnessctl set 5%+ && pkill -RTMIN+11 dwmblocks", NULL };
+static const char *dimmer[]   = { "sh", "-c", "brightnessctl set 5%- && pkill -RTMIN+11 dwmblocks", NULL };
 
-/* volume */
-static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
-static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
-static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+/* volume + dwmblocks */
+static const char *up_vol[]   = { "sh", "-c", "pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 dwmblocks", NULL };
+static const char *down_vol[] = { "sh", "-c", "pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 dwmblocks", NULL };
+static const char *mute_vol[] = { "sh", "-c", "pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 dwmblocks", NULL };
 
 static const Rule rules[] = {
   /* xprop(1):
